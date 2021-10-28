@@ -2,7 +2,7 @@
 
 Sözlük, yazara sadece kendi girdilerini yedekleme fırsatı sunmakta. Bu script, herhangi bir sözlük yazarının tüm girdilerini orijinal yedek dosyasına yakın bir biçimde yedeklemeye çalışır.
 
-Elde edilen XML dosyası https://github.com/altunenes/EksiKelime scriptinden geçirilirse ilginç veriler elde edilebilir.
+Elde edilen XML dosyası https://github.com/altunenes/EksiKelime adresindeki scriptlerden geçirilirse ilginç veriler elde edilebilir.
 
     git clone https://github.com/cagriozkurt/EksiYedek.git
     cd EksiYedek
