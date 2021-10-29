@@ -45,7 +45,7 @@ else:
     root.append(m1)
     n = 1
     while True:
-        print(f"{n} / {number_of_pages}")
+        print(f"{n} / {number_of_pages} - % {round(n/number_of_pages*100, 2)}")
         page_url = url + f"&p={n}"
         page_r = requests.get(page_url, headers=headers)
         page_r.raise_for_status()
@@ -98,7 +98,7 @@ else:
                         },
                     )
                     b.text = entry_content.get_text()
-        n += 1
+            n += 1
 
     tree = ET.ElementTree(root)
     with open(fileName, "wb") as f:
