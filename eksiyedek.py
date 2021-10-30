@@ -84,7 +84,7 @@ else:
                         + date_regex[0]
                         + "T00:00:00"
                     )
-                else:
+                finally:
                     entry_content = entry.find("div", {"class": "content"})
                     for br in entry_content.findAll("br"):
                         br.replace_with("\n")
