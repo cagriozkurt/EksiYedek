@@ -60,10 +60,10 @@ else:
                 entry_date = entry.find(
                     "a", {"class": "entry-date permalink"}
                 ).get_text()
-                try:
-                    date_regex = re.findall(
-                        r"(\d{2})\.(\d{2})\.(\d{4}) (\d{2}:\d{2})", entry_date
-                    )[0]
+                date_regex = re.findall(
+                    r"(\d{2})\.(\d{2})\.(\d{4})\s?(\d{2}:\d{2})?", entry_date
+                )[0]
+                if date_regex[3]:
                     new_date_format = (
                         date_regex[2]
                         + "-"
@@ -74,8 +74,7 @@ else:
                         + date_regex[3]
                         + ":00"
                     )
-                except IndexError:
-                    date_regex = re.findall(r"(\d{2})\.(\d{2})\.(\d{4})", entry_date)[0]
+                else:
                     new_date_format = (
                         date_regex[2]
                         + "-"
@@ -84,20 +83,19 @@ else:
                         + date_regex[0]
                         + "T00:00:00"
                     )
-                finally:
-                    entry_content = entry.find("div", {"class": "content"})
-                    for br in entry_content.findAll("br"):
-                        br.replace_with("\n")
-                    b = ET.SubElement(
-                        m1,
-                        "entry",
-                        attrib={
-                            "title": entry_title,
-                            "id": entry_id,
-                            "date": new_date_format,
-                        },
-                    )
-                    b.text = entry_content.get_text()
+                entry_content = entry.find("div", {"class": "content"})
+                for br in entry_content.findAll("br"):
+                    br.replace_with("\n")
+                b = ET.SubElement(
+                    m1,
+                    "entry",
+                    attrib={
+                        "title": entry_title,
+                        "id": entry_id,
+                        "date": new_date_format,
+                    },
+                )
+                b.text = entry_content.get_text()
             n += 1
 
     tree = ET.ElementTree(root)
