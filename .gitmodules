@@ -1,0 +1,3 @@
+[submodule "eksi_unofficial_api"]
+	path = eksi_unofficial_api
+	url = https://github.com/cagriozkurt/eksi_unofficial_api.git
