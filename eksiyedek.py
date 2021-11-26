@@ -2,10 +2,13 @@
 
 import argparse
 import logging
+import sys
 import xml.etree.ElementTree as ET
 from datetime import datetime
 
 from tqdm import tqdm
+
+sys.path.insert(0, "eksi_unofficial_api/")
 
 from EksiSozluk import EksiApi
 
