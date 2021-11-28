@@ -8,7 +8,9 @@ from datetime import datetime
 
 from tqdm import tqdm
 
-from eksisozluk.EksiSozluk import EksiApi
+sys.path.insert(0, "eksi_unofficial_api/")
+
+from EksiSozluk import EksiApi
 
 
 def build_xml(user_nick):
