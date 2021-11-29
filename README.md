@@ -6,6 +6,6 @@ Elde edilen XML dosyası https://github.com/altunenes/EksiKelime adresindeki scr
 
 #### Kullanım
 
-    $ git clone --recurse-submodules https://github.com/cagriozkurt/EksiYedek.git && cd EksiYedek
+    $ git clone https://github.com/cagriozkurt/EksiYedek.git && cd EksiYedek
     $ pip install -r requirements.txt
     $ python eksiyedek.py <nick>
