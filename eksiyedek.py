@@ -8,9 +8,7 @@ from datetime import datetime
 
 from tqdm import tqdm
 
-sys.path.insert(0, "eksi_unofficial_api/")
-
-from EksiSozluk import EksiApi
+from eksisozluk.EksiSozluk import EksiApi
 
 
 def build_xml(user_nick):
@@ -25,13 +23,13 @@ def build_xml(user_nick):
         "entries",
         attrib={
             "count": str(
-                api.get_user(user_nick)["Data"]["UserInfo"]["EntryCounts"]["Total"]
+                api.get_user(user_nick).to_dict()["UserInfo"]["EntryCounts"]["Total"]
             )
         },
     )
     root.append(m)
-    for i in tqdm(range(1, api.get_user_entries(user_nick)["Data"]["PageCount"] + 1)):
-        for entry in api.get_user_entries(user_nick, i)["Data"]["Entries"]:
+    for i in tqdm(range(1, api.get_user_entries(user_nick).to_dict()["Data"]["PageCount"] + 1)):
+        for entry in api.get_user_entries(user_nick, i).to_dict()["Data"]["Entries"]:
             title = entry["TopicId"]["Title"]
             id_ = entry["Entry"]["Id"]
             date = entry["Entry"]["Created"]
