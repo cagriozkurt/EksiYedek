@@ -21,19 +21,17 @@ def build_xml(user_nick):
     )
     m = ET.Element(
         "entries",
-        attrib={
-            "count": str(
-                api.get_user(user_nick).to_dict()["UserInfo"]["EntryCounts"]["Total"]
-            )
-        },
+        attrib={"count": str(api.get_user(user_nick).user_info.entry_counts.total)},
     )
     root.append(m)
-    for i in tqdm(range(1, api.get_user_entries(user_nick).to_dict()["Data"]["PageCount"] + 1)):
-        for entry in api.get_user_entries(user_nick, i).to_dict()["Data"]["Entries"]:
-            title = entry["TopicId"]["Title"]
-            id_ = entry["Entry"]["Id"]
-            date = entry["Entry"]["Created"]
-            content = entry["Entry"]["Content"]
+    for i in tqdm(
+        range(1, api.get_user_entries(user_nick).user_entries.page_count + 1)
+    ):
+        for entry in api.get_user_entries(user_nick, i).user_entries.entries:
+            title = entry.topic_id.title
+            id_ = entry.entry.id
+            date = str(entry.entry.created)
+            content = entry.entry.content
             b = ET.SubElement(
                 m,
                 "entry",
